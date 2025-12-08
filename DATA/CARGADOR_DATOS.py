@@ -50,3 +50,18 @@ print("\npersonas  en accidentes")
 cargador2 = cargador_datos(personas_accidentes)
 cargador2.cargar_datos()
 cargador2.resumen()
+#--------------------------------
+#juntar los csv
+df_accidentes_victimas_personas_accidentes = pd.concat(
+    [cargador.data, cargador2.data],
+    ignore_index=True
+)
+
+print("\nDataFrame combinado:")
+print(df_accidentes_victimas_personas_accidentes.head())
+print("Filas totales:", df_accidentes_victimas_personas_accidentes.shape[0])
+print("Columnas totales:", df_accidentes_victimas_personas_accidentes.shape[1])
+
+
+salida = BASE_DIR / "RAW" / "df_accidentes_victimas_&_personas_accidentes_2018_2024.csv"
+df_accidentes_victimas_personas_accidentes.to_csv(salida, index=False, encoding="utf-8")
