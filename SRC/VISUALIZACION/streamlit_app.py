@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from pathlib import Path
 
 # Configurar la página
 st.set_page_config(page_title="Análisis de Personas en Accidentes", layout="wide")
@@ -9,10 +10,18 @@ st.set_page_config(page_title="Análisis de Personas en Accidentes", layout="wid
 # Título principal
 st.title("📊 Análisis de Personas en Accidentes de Tránsito")
 
+# -----------------------------
+# Construir ruta absoluta
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = PROJECT_ROOT / "DATA"
+PROCESSED_DIR = DATA_DIR / "PROCESSED"
+
+RUTA = PROCESSED_DIR / "Base_personas_en_accidentes_clean.csv"
+
 # Cargar datos
 @st.cache_data
 def cargar_datos():
-    return pd.read_csv('Base_personas_en_accidentes_clean.csv', sep=';')
+    return pd.read_csv(RUTA, sep=';')
 
 df = cargar_datos()
 st.sidebar.success(f"✅ Datos cargados: {len(df):,} registros")
@@ -77,3 +86,6 @@ st.sidebar.markdown("""
 2. Ejecuta: `streamlit run streamlit_app.py`
 3. Los gráficos se actualizarán automáticamente
 """)
+
+#cd C:\Users\isaac\Documents\Prediccion-de-Accidentes-de-Transito-en-Costa-Rica
+#streamlit run SRC/VISUALIZACION/streamlit_app.py
