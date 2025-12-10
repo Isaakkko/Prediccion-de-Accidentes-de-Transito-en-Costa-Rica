@@ -112,74 +112,7 @@ class ProcesadorEDA:
         print("\nNúmero de nuevas columnas:", dummies.shape[1])
 
 # ----------------------------------------------------------
-# Gráficos
-    def personas_por_provincia_y_rol(self):
 
-        if "Provincia" in self.df.columns and "Rol" in self.df.columns:
-
-# Tabla de frecuencia
-            tabla = (
-                self.df
-                .groupby(["Provincia", "Rol"])
-                .size()
-                .reset_index(name="conteo")
-            )
-
-# Pivot
-            pivot = tabla.pivot(index="Provincia", columns="Rol", values="conteo").fillna(0)
-
-# Gráfico
-            plt.figure(figsize=(14, 6))
-            sns.heatmap(pivot, cmap="viridis")
-            plt.title("Frecuencia por provincia y rol")
-            plt.tight_layout()
-            plt.show()
-
-    def personas_por_edadquinquenal_y_sexo(self):
-
-        if "Edad quinquenal" in self.df.columns and "Sexo" in self.df.columns:
-
-# Tabla de frecuencia
-            tabla = (
-                self.df
-                .groupby(["Edad quinquenal", "Sexo"])
-                .size()
-                .reset_index(name="conteo")
-            )
-
-# Pivot
-            pivot = tabla.pivot(index="Edad quinquenal", columns="Sexo", values="conteo").fillna(0)
-
-# Gráfico
-            plt.figure(figsize=(10, 8))
-            sns.heatmap(pivot, cmap="magma")
-            plt.title("Personas por grupo de edad y sexo")
-            plt.tight_layout()
-            plt.show()
-
-    def rol_vs_tipo_lesion(self):
-
-        if "Rol" in self.df.columns and "Tipo de lesión" in self.df.columns:
-
-# Tabla freq
-            tabla = (
-                self.df
-                .groupby(["Rol", "Tipo de lesión"])
-                .size()
-                .reset_index(name="conteo")
-            )
-
-# Pivot
-            pivot = tabla.pivot(index="Rol", columns="Tipo de lesión", values="conteo").fillna(0)
-
-# Gráfico
-            plt.figure(figsize=(12, 6))
-            sns.heatmap(pivot, cmap="coolwarm")
-            plt.title("Rol vs tipo de lesión")
-            plt.tight_layout()
-            plt.show()
-
-# ----------------------------------------------------------
 # Matriz de correlación
     def matriz_correlacion(self):
 
