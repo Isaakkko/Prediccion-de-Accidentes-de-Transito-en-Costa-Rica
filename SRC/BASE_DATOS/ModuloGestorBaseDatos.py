@@ -1,7 +1,18 @@
+from pathlib import Path
 from GestorBaseDatos import GestorBaseDatos
 
-# Ruta CSV
-RUTA_CSV = "c:\GitHubFinal\Prediccion-de-Accidentes-de-Transito-en-Costa-Rica\DATA\PROCESSED\Base_de_accidentes_con_victimas_clean.csv"
+# -----------------------
+# Rutas del proyecto
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = PROJECT_ROOT / "DATA"
+PROCESSED_DIR = DATA_DIR / "PROCESSED"
+
+# Ruta CSV (PROCESSED)
+RUTA_CSV = PROCESSED_DIR / "Base_de_accidentes_con_victimas_clean.csv"
+
+print("Usando CSV:", RUTA_CSV)
+print("Existe archivo?:", RUTA_CSV.exists())
 
 # Crear gestor base datos
 db = GestorBaseDatos("accidentes.db")
@@ -12,8 +23,6 @@ df = db.crear_tabla_desde_csv("accidentes", RUTA_CSV)
 print("Base de datos creada y tabla 'accidentes' poblada correctamente.")
 print(df.head())
 
-
-
 # Consulta de accidentes con muertos o graves
 resultado = db.ejecutar_consulta("""
     SELECT *
@@ -22,7 +31,6 @@ resultado = db.ejecutar_consulta("""
 """)
 print(resultado)
 
-
 # Consulta de accidentes por provincia
 resultado = db.ejecutar_consulta("""
     SELECT Provincia, COUNT(*) AS total_accidentes
@@ -30,7 +38,6 @@ resultado = db.ejecutar_consulta("""
     GROUP BY Provincia
 """)
 print(resultado)
-
 
 # Accidentes por estado del tiempo
 resultado = db.ejecutar_consulta("""
@@ -41,6 +48,3 @@ resultado = db.ejecutar_consulta("""
     ORDER BY total_accidentes DESC
 """)
 print(resultado)
-
-
-

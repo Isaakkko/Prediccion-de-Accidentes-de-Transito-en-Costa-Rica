@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 #Creacion de la clase visualizador
+
 class Visualizador:
-    
     def __init__(self, datos):
         if isinstance(datos, str):
             self.df = pd.read_csv(datos)
