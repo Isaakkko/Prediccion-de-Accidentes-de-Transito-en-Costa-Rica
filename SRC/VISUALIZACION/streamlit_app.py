@@ -256,18 +256,6 @@ if {"Cantón", "Provincia"}.issubset(df_f.columns):
 else:
     st.error("Las columnas 'Cantón' y/o 'Provincia' no se encuentran en el dataset")
 
-# ==============================
-# Footer
-# ==============================
-st.sidebar.markdown("---")
-st.sidebar.markdown("""
-### 📌 Instrucciones
-1. Asegúrate de tener el CSV en `DATA/PROCESSED`.
-2. Desde la raíz del proyecto ejecuta:
 
-   `python -m streamlit run SRC/VISUALIZACION/streamlit_app.py`
-
-3. Usa los filtros del panel izquierdo para explorar los datos.
-""")
 #cd "C:\Users\isaac\Documents\Prediccion-de-Accidentes-de-Transito-en-Costa-Rica"
 #python -m streamlit run SRC/VISUALIZACION/streamlit_app.py
