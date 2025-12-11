@@ -29,9 +29,6 @@ procesador.convertir_edad()
 procesador.crear_disyuntivas(drop_original=False)
 
 # ---------------- Gráficos ----------------
-procesador.personas_por_provincia_y_rol()
-procesador.personas_por_edadquinquenal_y_sexo()
-procesador.rol_vs_tipo_lesion()
 procesador.matriz_correlacion()
 
 # ---------------- Guardar archivo limpio ----------------
